@@ -2,6 +2,7 @@ package com.myretail.controller;
 
 import static org.junit.Assert.assertEquals;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
@@ -30,10 +31,17 @@ public class ProductControllerTests {
 	@MockBean
 	private IProductService service;
 	
-	ProductPrice mockProductPrice = new ProductPrice(101,1350,"USD");
-	Product mockProduct = new Product(101,"Test Product Name",mockProductPrice);
+	private ProductPrice mockProductPrice;
+	private Product mockProduct;
 	
-	String productJson = "{\"id\":\"101,\"name\":\"Test Product Name\",\"currentPrice\":{\"price\":\"1340.50,\"currencyCode\":\"USD\"}}";
+	
+	
+	@Before
+	public void setup() {
+		
+		mockProductPrice = new ProductPrice(101,1350,"USD");
+		mockProduct = new Product(101,"Test Product Name",mockProductPrice);
+	}
 	
 	@Test
 	public void getProductTest() throws Exception {
@@ -66,7 +74,7 @@ public class ProductControllerTests {
 	@Test
 	public void updateProductTest() throws Exception {
 		
-		Mockito.when(service.updateProduct(Mockito.anyLong(), Mockito.anyObject())).thenReturn(mockProduct);
+		Mockito.when(service.updateProduct(Mockito.anyLong(), Mockito.any())).thenReturn(mockProduct);
 		RequestBuilder requestBuilder = MockMvcRequestBuilders.put(
 				"/productservice/product/101").accept(
 				MediaType.APPLICATION_JSON);
@@ -77,7 +85,7 @@ public class ProductControllerTests {
 	@Test
 	public void updateProductTestInvalid() throws Exception {
 		
-		Mockito.when(service.updateProduct(Mockito.anyLong(), Mockito.anyObject())).thenReturn(mockProduct);
+		Mockito.when(service.updateProduct(Mockito.anyLong(), Mockito.any())).thenReturn(mockProduct);
 		RequestBuilder requestBuilder = MockMvcRequestBuilders.put(
 				"/productservice/product").accept(
 				MediaType.APPLICATION_JSON);
