@@ -44,7 +44,22 @@ spring.data.mongodb.uri=mongodb://<db user>:<db password>@<dbhost>:<db port>/<db
 ```
   GET : http://localhost:8080/productservice/product/<id>
 ```
-  Response :
+  Sample Response :
+```
+  {
+    "id": 13860428,
+    "name": "The Big Lebowski (Blu-ray)",
+    "currentPrice": {
+        "price": 1350.49,
+        "currencyCode": "INR"
+    	}
+  }
+```
+```
+  PUT : http://localhost:8080/productservice/product/<id>
+```
+  Sample Request Payload :
+ ```
 
   {
     "id": 13860428,
@@ -55,20 +70,7 @@ spring.data.mongodb.uri=mongodb://<db user>:<db password>@<dbhost>:<db port>/<db
     	}
   }
 ```
-  PUT : http://localhost:8080/productservice/product/<id>
-```
-  Request Payload :
- ```
-  {
-    "id": 13860428,
-    "name": "The Big Lebowski (Blu-ray)",
-    "currentPrice": {
-        "price": 1350.49,
-        "currencyCode": "INR"
-    	}
-  }
-```
-  Response:
+  Sample Response:
 ```  
   {
     "id": 13860428,
